@@ -4,7 +4,8 @@ HealthMonitor is a real-time patient vital-sign monitoring system built on Googl
 The vitals are streamed into Pub/Sub, processed through a Dataflow (Apache Beam) streaming pipeline that computes risk scores and status labels, and stored in BigQuery for real-time alerting, analytics, and ICU-style dashboards.
 
 **Architecture Overview**
-<img width="1100" height="600" alt="image" src="https://github.com/user-attachments/assets/2d630453-6582-440c-9bff-716a4762d3ff" />
+[<img width="1100" height="600" alt="image" src="https://github.com/user-attachments/assets/2d630453-6582-440c-9bff-716a4762d3ff" />](https://chatgpt.com/backend-api/estuary/content?id=file_000000006ed071fdbcc1431a49410033&ts=490686&p=fs&cid=1&sig=1af3a43e2746dc5e7fd5e21fb4857b286c42de4623a08736976ae8eba129cab2&v=0)<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/28fbd0e8-767a-4823-a8a8-5d1a88c33727" />
+
 
 # Component Breakdown
 
