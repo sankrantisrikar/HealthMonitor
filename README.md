@@ -6,7 +6,7 @@ The vitals are streamed into Pub/Sub, processed through a Dataflow (Apache Beam)
 **Architecture Overview**
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/2d630453-6582-440c-9bff-716a4762d3ff" />
 
-# 🔍 Component Breakdown
+# Component Breakdown
 
 ##  Synthetic Vital Generator (Python) 
 A Python script generates periodic vital-sign readings for multiple patients.
@@ -87,7 +87,25 @@ Connect BigQuery to Power BI to build a real-time ICU dashboard with:
 - SpO₂ changes  
 - Temperature spikes  
 - Critical condition alerts  
-- Live patient monitoring panels  
+- Live patient monitoring panels
 
+--- 
+
+**Features**
+- Real-time vital ingestion
+- Simulated data (sensor-ready architecture)
+- Apache Beam streaming transformations
+- Risk scoring classification
+- BigQuery analytical storage
+- Power BI ICU dashboard
+  
+---
+
+**Future Enhancements**
+- Integrate real sensor devices
+- Add SMS/email alerts for CRITICAL events
+- Implement ML anomaly detection
+- Multi-patient ICU room visualization
+- Add REST API for patient metadata
 
 
