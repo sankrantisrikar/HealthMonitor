@@ -8,7 +8,7 @@ The vitals are streamed into Pub/Sub, processed through a Dataflow (Apache Beam)
 
 # 🔍 Component Breakdown
 
-## ** Synthetic Vital Generator (Python)**  
+##  Synthetic Vital Generator (Python) 
 A Python script generates periodic vital-sign readings for multiple patients.
 
 It produces realistic values for:
@@ -25,7 +25,7 @@ Each reading is formatted as JSON and published to **Pub/Sub**.
 
 ---
 
-## ** Pub/Sub (Ingestion Layer)**  
+##  Pub/Sub (Ingestion Layer)  
 Pub/Sub acts as the real-time message ingestion system.
 
 It provides:
@@ -37,7 +37,7 @@ It provides:
 
 ---
 
-## ** Dataflow (Apache Beam) Streaming Pipeline**  
+##  Dataflow (Apache Beam) Streaming Pipeline
 The core processing engine of HealthMonitor.
 
 The pipeline:
@@ -55,7 +55,7 @@ This enables continuous real-time monitoring of patient vitals.
 
 ---
 
-## ** BigQuery (Analytical Storage)**  
+##  BigQuery (Analytical Storage)  
 A central dataset stores curated, structured patient vital data.
 
 ### **Schema Example**
@@ -80,7 +80,7 @@ Use BigQuery for:
 
 ---
 
-## ** Dashboard Layer (Power BI)**  
+##  Dashboard Layer (Power BI)  
 Connect BigQuery to Power BI to build a real-time ICU dashboard with:
 
 - Heart-rate trends  
@@ -89,6 +89,5 @@ Connect BigQuery to Power BI to build a real-time ICU dashboard with:
 - Critical condition alerts  
 - Live patient monitoring panels  
 
----
 
-# 📁 Repository Structure
+
