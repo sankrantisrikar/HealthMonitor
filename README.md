@@ -1,0 +1,2 @@
+# HealthMonitor
+HealthMonitor is a real-time patient vital-sign monitoring system built on Google Cloud.  It simulates live patient data, sends it through Pub/Sub, processes vitals using a Dataflow  (Apache Beam) pipeline with risk scoring, and stores curated results in BigQuery for alerting  and ICU-style dashboards.
