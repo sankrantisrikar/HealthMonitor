@@ -1,4 +1,4 @@
-🏥 HealthMonitor – End-to-End Healthcare Data Pipeline
+🏥 **HealthMonitor** – End-to-End Healthcare Data Pipeline
 HealthMonitor is a clean, modular, and extensible healthcare data engineering project designed to simulate, ingest, process, and prepare patient vitals data using a modern streaming data pipeline. The project focuses on real-world data engineering practices such as streaming ingestion, data validation, medallion architecture (Bronze–Silver–Gold), and analytics-ready outputs.
 The project will be fully dockerized in later stages to ensure easy reproducibility and portability. Dockerization allows professors, reviewers, or collaborators to run the entire pipeline locally with minimal setup—without worrying about Python versions, dependencies, or environment conflicts.
 
@@ -71,11 +71,8 @@ BigQuery supports real-time querying, trend analysis, and patient-level aggregat
 
 ---
 
-### Dashboard Layer (Looker)
 
-**Looker** connects directly to BigQuery to provide a real-time monitoring dashboard.
-
-## Live Dashboard (Looker Studio)
+### Live Dashboard (Looker Studio)
 
 🔗 **Interactive Dashboard:**  
 https://lookerstudio.google.com/reporting/d41bed9b-46a1-4990-836d-f3d080171d21
