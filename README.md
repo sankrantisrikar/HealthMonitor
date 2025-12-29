@@ -75,6 +75,11 @@ BigQuery supports real-time querying, trend analysis, and patient-level aggregat
 
 **Looker** connects directly to BigQuery to provide a real-time monitoring dashboard.
 
-The dashboard visualizes patient vitals, risk status, and temporal trends, enabling rapid identification of abnormal patterns and high-risk conditions.
+## Live Dashboard (Looker Studio)
+
+🔗 **Interactive Dashboard:**  
+https://lookerstudio.google.com/reporting/d41bed9b-46a1-4990-836d-f3d080171d21
+
+This Looker Studio report connects directly to BigQuery and provides real-time visualization of patient vitals, risk levels, and trends. It enables patient-level monitoring, anomaly detection, and quick assessment of health status using streaming data.
 
 <img width="1145" height="780" alt="Screenshot 2025-12-29 at 1 13 12 AM" src="https://github.com/user-attachments/assets/737cec6b-c4f1-4c59-888d-160e981436e7" />
