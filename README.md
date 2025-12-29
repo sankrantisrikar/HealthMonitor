@@ -1,112 +1,80 @@
-**HealthMonitor:** Real-Time Patient Vital Monitoring System on Google Cloud
-HealthMonitor is a real-time patient vital-sign monitoring system built on Google Cloud Platform (GCP). It simulates live patient data (right now we’re generating our own “live” data with some beautiful inconsistencies 😅 but it really works with real sensor data if you feed it).
-
-The vitals are streamed into Pub/Sub, processed through a Dataflow (Apache Beam) streaming pipeline that computes risk scores and status labels, and stored in BigQuery for real-time alerting, analytics, and ICU-style dashboards.
+🏥 HealthMonitor – End-to-End Healthcare Data Pipeline
+HealthMonitor is a clean, modular, and extensible healthcare data engineering project designed to simulate, ingest, process, and prepare patient vitals data using a modern streaming data pipeline. The project focuses on real-world data engineering practices such as streaming ingestion, data validation, medallion architecture (Bronze–Silver–Gold), and analytics-ready outputs.
+The project will be fully dockerized in later stages to ensure easy reproducibility and portability. Dockerization allows professors, reviewers, or collaborators to run the entire pipeline locally with minimal setup—without worrying about Python versions, dependencies, or environment conflicts.
 
 **Architecture Overview**
 
-<img width="1536" height="1024" alt="452c59f6-8dbd-429e-b87f-6842bb6f39ab" src="https://github.com/user-attachments/assets/86010b5e-ed9d-4dc3-a395-3e0af2771ccd" />
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/43b224b1-0bb7-44c3-81a0-a64d32e83802" />
 
-# Component Breakdown
 
-##  Synthetic Vital Generator (Python) 
-A Python script generates periodic vital-sign readings for multiple patients.
+## Component Breakdown
 
-It produces realistic values for:
+### Synthetic Vital Generator (Python)
 
+A Python-based simulator generates continuous patient vital-sign readings for multiple patients.
+
+It produces:
 - Heart rate  
 - Oxygen saturation (SpO₂)  
-- Temperature  
+- Body temperature  
 - Respiratory rate  
-- Timestamp  
+- Event timestamp  
 
-This data includes natural randomness — and occasionally amusing inconsistencies 😅 — to mimic real-world sensor noise.
-
-Each reading is formatted as JSON and published to **Pub/Sub**.
-
----
-
-##  Pub/Sub (Ingestion Layer)  
-Pub/Sub acts as the real-time message ingestion system.
-
-It provides:
-
-- Scalable message delivery  
-- Low latency  
-- Guaranteed ordering (per publisher)  
-- Ability to connect multiple downstream consumers  
+The generator introduces controlled randomness and occasional anomalies to reflect real-world sensor behavior.  
+Each record is formatted as JSON and published to **Google Cloud Pub/Sub**.
 
 ---
 
-##  Dataflow (Apache Beam) Streaming Pipeline
-The core processing engine of HealthMonitor.
+### Pub/Sub (Ingestion Layer)
+
+**Google Cloud Pub/Sub** serves as the real-time ingestion layer.
+
+It provides scalable, low-latency message delivery and decouples data producers from downstream consumers, enabling reliable ingestion of high-velocity healthcare data streams.
+
+---
+
+### Dataflow (Apache Beam) Streaming Pipeline
+
+The main processing layer is implemented using **Apache Beam on Cloud Dataflow**.
 
 The pipeline:
-
-- ✔ Reads messages from Pub/Sub  
-- ✔ Parses and validates JSON  
-- ✔ Computes a **risk score**  
-- ✔ Assigns a status label:  
-  - **STABLE**  
-  - **ELEVATED**  
-  - **CRITICAL**  
-- ✔ Writes enriched records to **BigQuery**  
+- Reads streaming messages from Pub/Sub  
+- Parses and validates JSON payloads  
+- Cleans and standardizes vital-sign data  
+- Computes a patient risk score  
+- Assigns a health status label (`STABLE`, `ELEVATED`, `CRITICAL`)  
+- Writes enriched records to **BigQuery** using streaming inserts  
 
 This enables continuous real-time monitoring of patient vitals.
 
 ---
 
-##  BigQuery (Analytical Storage)  
-A central dataset stores curated, structured patient vital data.
+### BigQuery (Analytical Storage)
 
-### **Schema Example**
+**BigQuery** stores curated and analytics-ready patient vital data.
 
-| Column        | Type       |
-|---------------|------------|
-| patient_id    | INTEGER    |
-| heart_rate    | FLOAT      |
-| spo2          | FLOAT      |
-| temperature   | FLOAT      |
-| resp_rate     | FLOAT      |
-| risk_score    | INTEGER    |
-| status        | STRING     |
-| ts            | TIMESTAMP  |
-| ingest_ts     | TIMESTAMP  |
+#### Example Schema
 
-Use BigQuery for:
+| Column      | Type      |
+|------------|-----------|
+| patient_id | STRING    |
+| heart_rate | FLOAT     |
+| spo2       | FLOAT     |
+| temperature| FLOAT     |
+| resp_rate  | FLOAT     |
+| risk_score | INTEGER   |
+| status     | STRING    |
+| ts         | TIMESTAMP |
+| ingest_ts  | TIMESTAMP |
 
-- Identifying high-risk patients  
-- Tracking health trends  
-- Reviewing ICU events  
+BigQuery supports real-time querying, trend analysis, and patient-level aggregation.
 
 ---
 
-##  Dashboard Layer (Power BI)  
-Connect BigQuery to Power BI to build a real-time ICU dashboard with:
+### Dashboard Layer (Looker)
 
-- Heart-rate trends  
-- SpO₂ changes  
-- Temperature spikes  
-- Critical condition alerts  
-- Live patient monitoring panels
+**Looker** connects directly to BigQuery to provide a real-time monitoring dashboard.
 
---- 
+The dashboard visualizes patient vitals, risk status, and temporal trends, enabling rapid identification of abnormal patterns and high-risk conditions.
 
-**Features**
-- Real-time vital ingestion
-- Simulated data (sensor-ready architecture)
-- Apache Beam streaming transformations
-- Risk scoring classification
-- BigQuery analytical storage
-- Power BI ICU dashboard
-  
----
-
-**Future Enhancements**
-- Integrate real sensor devices
-- Add SMS/email alerts for CRITICAL events
-- Implement ML anomaly detection
-- Multi-patient ICU room visualization
-- Add REST API for patient metadata
-
-
+<img width="1145" height="780" alt="Screenshot 2025-12-29 at 1 13 12 AM" src="https://github.com/user-attachments/assets/737cec6b-c4f1-4c59-888d-160e981436e7" />
