@@ -1,6 +1,5 @@
 🏥 **HealthMonitor** – End-to-End Healthcare Data Pipeline
 HealthMonitor is a clean, modular, and extensible healthcare data engineering project designed to simulate, ingest, process, and prepare patient vitals data using a modern streaming data pipeline. The project focuses on real-world data engineering practices such as streaming ingestion, data validation, medallion architecture (Bronze–Silver–Gold), and analytics-ready outputs.
-The project will be fully dockerized in later stages to ensure easy reproducibility and portability. Dockerization allows professors, reviewers, or collaborators to run the entire pipeline locally with minimal setup—without worrying about Python versions, dependencies, or environment conflicts.
 
 **Architecture Overview**
 
